@@ -7,7 +7,7 @@ PATCH_URL="https://sundaysounds.com/pages/insiders-free-patches"
 
 WEBSITE_CONTENT=$(curl -s $PATCH_URL)
 
-LATEST_PATCH_URL=$(echo $WEBSITE_CONTENT | grep -o -m 1 -h -E 'https://cdn.shopify.com/s/files/([A-z0-9_/-]+)\.patch\.zip\?v=([0-9]+)' | head -1)
+LATEST_PATCH_URL=$(echo $WEBSITE_CONTENT | grep -o -m 1 -h -E 'https://cdn.shopify.com/s/files/([A-z0-9_/-]+)\.patch([A-z0-9_/-]+)*\.zip\?v=([0-9]+)' | head -1)
 
 BASE_FILENAME=$(basename $LATEST_PATCH_URL | grep -o -m 1 -E '[A-z0-9_/-]+' | head -1)
 DOWNLOAD_FILEPATH="$DOWNLOAD_FOLDER/$BASE_FILENAME.zip"
